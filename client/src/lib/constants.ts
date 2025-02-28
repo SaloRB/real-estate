@@ -22,6 +22,9 @@ import {
   Castle,
   Trees,
   LucideIcon,
+  FileText,
+  Settings,
+  Heart,
 } from 'lucide-react'
 
 export enum AmenityEnum {
@@ -158,6 +161,47 @@ export const discoverCardContents = [
     title: 'Enjoy your New Home',
     description:
       'Move into your new rental property and start enjoying your dream home.',
+  },
+]
+
+export const managerLinks = [
+  {
+    icon: Building,
+    label: 'Properties',
+    href: '/managers/properties',
+  },
+  {
+    icon: FileText,
+    label: 'Applications',
+    href: '/managers/applications',
+  },
+  {
+    icon: Settings,
+    label: 'Settings',
+    href: '/managers/settings',
+  },
+]
+
+export const tenantLinks = [
+  {
+    icon: Heart,
+    label: 'Favorites',
+    href: '/tenants/favorites',
+  },
+  {
+    icon: FileText,
+    label: 'Applications',
+    href: '/tenants/applications',
+  },
+  {
+    icon: Home,
+    label: 'Residences',
+    href: '/tenants/residences',
+  },
+  {
+    icon: Settings,
+    label: 'Settings',
+    href: '/tenants/settings',
   },
 ]
 

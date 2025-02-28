@@ -1,3 +1,5 @@
+'use client'
+
 import { signOut } from 'aws-amplify/auth'
 import { BellIcon, MessageCircleIcon, PlusIcon, SearchIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -16,7 +18,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { SidebarTrigger } from './ui/sidebar'
+// import { SidebarTrigger } from './ui/sidebar'
 
 const Navbar = () => {
   const { data: authUser } = useGetAuthUserQuery()
@@ -40,11 +42,11 @@ const Navbar = () => {
     >
       <div className="flex justify-between items-center w-full py-3 px-8 bg-primary-700 text-white">
         <div className="flex items-center gap-4 md:gap-6">
-          {isDashboardPage && (
+          {/* {isDashboardPage && (
             <div className="md:hidden">
               <SidebarTrigger />
             </div>
-          )}
+          )} */}
           <Link
             href="/"
             className="cursor-pointer hover:!text-primary-300"
