@@ -1,12 +1,14 @@
-import express from 'express'
-import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import dotenv from 'dotenv'
+import express from 'express'
 import helmet from 'helmet'
 import morgan from 'morgan'
+
 import { authMiddleware } from './middleware/authMiddleware'
 
 // ROUTE IMPORT
+import leaseRoutes from './routes/leaseRoutes'
 import managerRoutes from './routes/managerRoutes'
 import propertyRoutes from './routes/propertyRoutes'
 import tenantRoutes from './routes/tenantRoutes'
@@ -28,6 +30,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/properties', propertyRoutes)
+app.use('/leases', leaseRoutes)
 app.use('/managers', authMiddleware(['manager']), managerRoutes)
 app.use('/tenants', authMiddleware(['tenant']), tenantRoutes)
 
