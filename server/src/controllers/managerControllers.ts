@@ -133,6 +133,6 @@ export const getManagerProperties = async (
         })
     }
 
-    res.status(500).json({ message: 'Error retrieving manager properties' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }

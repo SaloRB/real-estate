@@ -147,7 +147,7 @@ export const getProperties = async (
         .json({ message: `Error retrieving properties: ${error.message}` })
     }
 
-    res.status(500).json({ message: 'Error retrieving properties' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }
 
@@ -191,7 +191,7 @@ export const getProperty = async (
         .json({ message: `Error retrieving property: ${error.message}` })
     }
 
-    res.status(500).json({ message: 'Error retrieving property' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }
 
@@ -295,6 +295,6 @@ export const createProperty = async (
         .json({ message: `Error creating property: ${error.message}` })
     }
 
-    res.status(500).json({ message: 'Error creating property' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }

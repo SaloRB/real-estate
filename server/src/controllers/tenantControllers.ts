@@ -131,7 +131,7 @@ export const getCurrentResidences = async (
       })
     }
 
-    res.status(500).json({ message: 'Error retrieving residences' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }
 
@@ -170,7 +170,7 @@ export const addFavoriteProperty = async (
       })
     }
 
-    res.status(500).json({ message: 'Error adding favorite property' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }
 
@@ -198,6 +198,6 @@ export const removeFavoriteProperty = async (
       })
     }
 
-    res.status(500).json({ message: 'Error removing favorite property' })
+    res.status(500).json({ message: 'Server Error' })
   }
 }
