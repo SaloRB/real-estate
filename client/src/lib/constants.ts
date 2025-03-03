@@ -205,6 +205,9 @@ export const tenantLinks = [
   },
 ]
 
+export const minPriceRanges = [500, 1000, 1500, 2000, 3000, 5000, 10000]
+export const maxPriceRanges = [1000, 2000, 3000, 5000, 10000]
+
 // Test users for development
 export const testUsers = {
   tenant: {
