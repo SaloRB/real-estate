@@ -9,23 +9,23 @@ import { cleanParams, cn, formatEnumString } from '@/lib/utils'
 import { initialState, setFilters } from '@/state'
 import { useAppSelector } from '@/state/redux'
 
-import { Button } from './ui/button'
-import { Input } from './ui/input'
-import { Label } from './ui/label'
+import { Button } from '../ui/button'
+import { Input } from '../ui/input'
+import { Label } from '../ui/label'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select'
-import { Slider } from './ui/slider'
+} from '../ui/select'
+import { Slider } from '../ui/slider'
 
 const FiltersFull = () => {
   const dispatch = useDispatch()
   const router = useRouter()
   const pathname = usePathname()
-  const filters = useAppSelector((state) => state.global.filters)
+  // const filters = useAppSelector((state) => state.global.filters)
   const [localFilters, setLocalFilters] = useState(initialState.filters)
   const isFiltersFullOpen = useAppSelector(
     (state) => state.global.isFiltersFullOpen
@@ -56,8 +56,6 @@ const FiltersFull = () => {
     updateUrl(initialState.filters)
   }
 
-  const handleLocationSearch = () => {}
-
   const handleAmenityChange = (amenity: string) => {
     setLocalFilters((prev) => ({
       ...prev,
@@ -65,6 +63,27 @@ const FiltersFull = () => {
         ? prev.amenities.filter((a) => a !== amenity)
         : [...prev.amenities, amenity],
     }))
+  }
+
+  const handleLocationSearch = async () => {
+    try {
+      const response = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+          localFilters.location
+        )}.json?access_token=${
+          process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
+        }&fuzzyMatch=true`
+      )
+
+      const data = await response.json()
+
+      if (data.features && data.features.length > 0) {
+        const [lng, lat] = data.features[0].center
+        setLocalFilters((prev) => ({ ...prev, coordinates: [lng, lat] }))
+      }
+    } catch (error) {
+      console.error('Error searching location:', error)
+    }
   }
 
   if (!isFiltersFullOpen) return null
@@ -78,7 +97,7 @@ const FiltersFull = () => {
           <div className="flex items-center">
             <Input
               placeholder="Enter location"
-              value={filters.location}
+              value={localFilters.location}
               onChange={(e) =>
                 setLocalFilters((prev) => ({
                   ...prev,

@@ -3,8 +3,10 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 
-import FiltersBar from '@/components/FiltersBar'
-import FiltersFull from '@/components/FiltersFull'
+import Map from '@/components/search/Map'
+import FiltersBar from '@/components/search/FiltersBar'
+import FiltersFull from '@/components/search/FiltersFull'
+import Listings from '@/components/search/Listings'
 import { NAVBAR_HEIGHT } from '@/lib/constants'
 import { cleanParams, cn } from '@/lib/utils'
 import { setFilters } from '@/state'
@@ -58,8 +60,10 @@ const SearchPage = () => {
         >
           <FiltersFull />
         </div>
-        <div>Map</div>
-        <div className="basis-4/12 overflow-y-auto">Listings</div>
+        <Map />
+        <div className="basis-4/12 overflow-y-auto">
+          <Listings />
+        </div>
       </div>
     </div>
   )

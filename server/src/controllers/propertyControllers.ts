@@ -100,14 +100,14 @@ export const getProperties = async (
 
     if (latitude && longitude) {
       const lat = parseFloat(latitude as string)
-      const long = parseFloat(longitude as string)
-      const radiusInKm = 1000
-      const degrees = radiusInKm / 111
+      const lng = parseFloat(longitude as string)
+      const radiusInKilometers = 1000
+      const degrees = radiusInKilometers / 111 // Converts kilometers to degrees
 
       whereConditions.push(
         Prisma.sql`ST_DWithin(
           l.coordinates::geometry,
-          ST_SetSRID(ST_MakePoint(${long}, ${lat}), 4326),
+          ST_SetSRID(ST_MakePoint(${lng}, ${lat}), 4326),
           ${degrees}
         )`
       )
@@ -132,7 +132,7 @@ export const getProperties = async (
       JOIN "Location" l ON p."locationId" = l.id
       ${
         whereConditions.length > 0
-          ? Prisma.sql`WHERE ${Prisma.join(whereConditions, ' AND')}`
+          ? Prisma.sql`WHERE ${Prisma.join(whereConditions, ' AND ')}`
           : Prisma.empty
       }
     `
